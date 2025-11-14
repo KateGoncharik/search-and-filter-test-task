@@ -3,7 +3,7 @@ import { ResultItem } from '../types';
 import createResultItem from './ResultItem';
 
 export const createResultsWrapper = () => {
-  return new Component({ className: 'results-wrapper' });
+  return new Component({ className: 'results-wrapper', text: 'No data' });
 };
 
 export const createResults = (results: Array<ResultItem>) => {
