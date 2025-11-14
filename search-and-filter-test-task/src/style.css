@@ -1,0 +1,36 @@
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+:root {
+  --text: black;
+  --bg: pink;
+}
+
+#app {
+  margin: 0 auto;
+  padding: 2%;
+  background-color: var(--bg);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.main-footer,
+.main-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.header-title,
+.footer-title {
+  font-size: 1.2rem;
+}
