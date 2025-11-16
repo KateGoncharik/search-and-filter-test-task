@@ -3,7 +3,7 @@ const API_URL = 'https://vpic.nhtsa.dot.gov/api/vehicles/';
 export async function getParts(filter: string, page?: number) {
   try {
     const response = await fetch(
-      `${API_URL}GetParts?${filter && 'type=' + filter}&format=json&page=${
+      `${API_URL}GetParts?${filter && `type=${filter}&`}format=json&page=${
         page ?? 1
       }`
     );
