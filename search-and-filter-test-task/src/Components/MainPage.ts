@@ -1,16 +1,16 @@
-import { getParts } from '../api/api';
 import Component from '../component';
+import { updateSearchByFilter } from '../helpers';
 import createFooter from './Footer';
 import createHeader from './Header';
-import { createResultsWrapper, updateResults } from './Results';
+import { createResultsWrapper } from './Results';
+import createFilter from './Search';
 
 export default function createMainPage(): Component {
-  getParts('ORG10655').then((res) => {
-    updateResults(res.Results);
-  });
+  updateSearchByFilter('');
   return new Component(
     { className: 'main-wrapper' },
     createHeader(),
+    createFilter(),
     createResultsWrapper(),
     createFooter()
   );
