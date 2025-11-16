@@ -8,6 +8,7 @@ export default function createMainWrapper(): Component {
   return new Component(
     { tag: 'main', className: 'main-wrapper' },
     createFilter(),
+    new Component({ className: 'results-title', text: 'Results:' }),
     createResultsWrapper()
   );
 }

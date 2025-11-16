@@ -1,4 +1,4 @@
-import createApp from './Components/Layout/App';
-import './style.css';
+import createApp from './Components/App';
+import './assets/style.css';
 
 document.body.appendChild(createApp().getNode());
