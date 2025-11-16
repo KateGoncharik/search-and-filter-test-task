@@ -1,4 +1,4 @@
-import Component from '../component';
+import Component from '../../component';
 
 export default function createFooter(): Component {
   const info = new Component({

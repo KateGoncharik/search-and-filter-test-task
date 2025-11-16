@@ -1,4 +1,4 @@
-import createMainPage from './Components/MainPage';
+import createApp from './Components/Layout/App';
 import './style.css';
 
-document.querySelector('#app')!.appendChild(createMainPage().getNode());
+document.body.appendChild(createApp().getNode());
