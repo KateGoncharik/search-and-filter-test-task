@@ -76,26 +76,26 @@ export const updatePopupContent = async (manufacturerId: number) => {
 };
 
 export const createDetails = (details: any) => {
-  const AAA = new Component({
+  const Address = new Component({
     className: 'TODO',
     text: details.Address,
   });
-  const BBB = new Component({
+  const Country = new Component({
     className: 'TODO',
     text: details.Country,
   });
-  const CCC = new Component({
+  const Contact = new Component({
     className: 'TODO',
     text: details.ContactEmail,
   });
-  const contentWrapper = new Component({}, AAA, BBB, CCC);
+  const contentWrapper = new Component({}, Address, Country, Contact);
 
   details.ManufacturerTypes.forEach((type: { Name: string }) => {
-    const AAA = new Component({
+    const Type = new Component({
       className: 'TODO',
       text: type.Name,
     });
-    contentWrapper.append(AAA);
+    contentWrapper.append(Type);
   });
 
   console.log('details', details);
