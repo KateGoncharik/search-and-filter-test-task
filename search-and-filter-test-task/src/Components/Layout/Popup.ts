@@ -15,11 +15,9 @@ export default function createPopup(
   const popupRoot = new Component({
     className: `popup hidden`,
   });
-
   const contentContainer = new Component({
     className: `popup-container`,
   });
-
   const header = new Component({
     className: `popup-header`,
   });
@@ -33,18 +31,14 @@ export default function createPopup(
     className: `popup-close`,
     text: '×',
   });
-
   const hide = () => {
     popupRoot.toggleClass('hidden');
   };
   closeButton.addListener('click', () => {
     hide();
   });
-
   header.appendChildren([titleComponent, closeButton]);
-
   const body = new Component({ className: `popup-body` }, contentComponent);
-
   contentContainer.appendChildren([header, body]);
   popupRoot.append(contentContainer);
 
@@ -55,7 +49,6 @@ export default function createPopup(
   });
 
   document.body.append(popupRoot.getNode());
-
   return popupRoot;
 }
 
@@ -77,6 +70,7 @@ export const createDetails = (details: any) => {
   const contactsTitle = createPopupDetailsTitle('Contacts');
   const contact = createPopupDetailsBlock(details.ContactEmail, 'No email');
   const typeTitle = createPopupDetailsTitle('Type');
+  const types = createPopupDetailsBlock('', '');
 
   const contentWrapper = new Component(
     { className: 'popup-content-wrapper' },
@@ -86,15 +80,16 @@ export const createDetails = (details: any) => {
     country,
     contactsTitle,
     contact,
-    typeTitle
+    typeTitle,
+    types
   );
 
   if (details.ManufacturerTypes.length === 0) {
-    contentWrapper.append(createPopupDetailsBlock(null, 'No type'));
+    types.append(createPopupDetailsBlock(null, 'No type'));
   } else {
     details.ManufacturerTypes.forEach((t: { Name: string }) => {
       const type = createPopupDetailsBlock(t.Name, '');
-      contentWrapper.append(type);
+      types.append(type);
     });
   }
 
