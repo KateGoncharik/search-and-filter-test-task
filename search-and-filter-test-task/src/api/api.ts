@@ -17,7 +17,7 @@ const buildQuery = (type?: string, page: number = 1) => {
 export async function getParts(
   type?: string,
   page?: number
-): Promise<Array<ResultItem> | null> {
+): Promise<{ results: Array<ResultItem>; total: number } | null> {
   try {
     const response = await fetch(
       `${API_URL}GetParts?${buildQuery(type, page)}format=json`
@@ -28,7 +28,7 @@ export async function getParts(
     }
 
     const res = await response.json();
-    return res.Results;
+    return { results: res.Results, total: res.Count };
   } catch (error) {
     console.error('Error while fetching parts:', error);
     return null;
@@ -37,7 +37,7 @@ export async function getParts(
 
 export async function getPartsByName(name: string) {
   const allParts = await getParts();
-  return allParts ? allParts.filter((part) => part.Name === name) : [];
+  return allParts ? allParts.results.filter((part) => part.Name === name) : [];
 }
 
 export async function getManufacturerDetails(manufacturerId: number) {

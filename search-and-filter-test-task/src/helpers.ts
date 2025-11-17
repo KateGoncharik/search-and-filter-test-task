@@ -12,7 +12,7 @@ export const updateSearchByFilter = (filter?: string) => {
 export const updateSearchByName = (name: string) => {
   getPartsByName(name).then((res) => {
     if (res) {
-      updateResults(res);
+      updateResults({ results: res, total: 1 });
     }
   });
 };

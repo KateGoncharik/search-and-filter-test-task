@@ -10,20 +10,35 @@ export const createResultsWrapper = () => {
   );
 };
 
-export const createResults = (results: Array<ResultItem>) => {
-  const container = new Component({
-    className: 'results',
-    text: results.length === 0 ? 'No data' : '',
+export const createResults = (res: {
+  results: Array<ResultItem>;
+  total: number;
+}) => {
+  const count = new Component({
+    className: '',
+    text: '' + res.total,
   });
 
-  results.forEach((result: ResultItem) => {
+  const container = new Component(
+    {
+      className: 'results',
+      text: res.results.length === 0 ? 'No data' : '',
+    },
+    count
+  );
+
+  res.results.forEach((result: ResultItem) => {
     const item = createResultItem(result);
     container.append(item);
   });
+
   return container;
 };
 
-export const updateResults = (results: Array<ResultItem>) => {
+export const updateResults = (results: {
+  results: Array<ResultItem>;
+  total: number;
+}) => {
   const container = document.querySelector('.results-container');
   if (!container) {
     throw new Error('Container expected');
