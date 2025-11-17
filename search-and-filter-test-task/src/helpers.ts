@@ -1,7 +1,7 @@
 import { getParts, getPartsByName } from './api/api';
 import { updateResults } from './Components/Results';
 
-export const updateSearchByFilter = (filter: string) => {
+export const updateSearchByFilter = (filter?: string) => {
   getParts(filter).then((res) => {
     if (res) {
       updateResults(res);

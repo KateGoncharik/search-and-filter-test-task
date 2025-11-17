@@ -49,9 +49,22 @@ const createNameFilter = (): Component => {
     text: 'Name',
   });
   label.setAttribute('for', 'filter');
+
+  const wrapper = new Component({ className: 'name-input-wrapper' });
   const input = new Component({ className: 'name-input', tag: 'input' });
   input.setAttribute('name', 'name-input');
-  label.append(input);
+
+  const clearButton = new Component({
+    className: 'clear-button',
+    tag: 'button',
+    text: '×',
+  });
+  clearButton.addListener('click', () => {
+    clearNameSearch();
+    updateSearchByFilter();
+  });
+  wrapper.appendChildren([input, clearButton]);
+  label.append(wrapper);
 
   // TODO add debounce
   input.addListener('input', (e) => {
@@ -60,6 +73,7 @@ const createNameFilter = (): Component => {
       updateSearchByName(target.value);
     }
   });
+
   return label;
 };
 

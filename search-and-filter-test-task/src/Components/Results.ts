@@ -3,12 +3,16 @@ import { ResultItem } from '../types';
 import createResultItem from './ResultItem';
 
 export const createResultsWrapper = () => {
-  return new Component({ className: 'results-wrapper', text: 'No data' });
+  return new Component(
+    { className: 'results-wrapper' },
+    new Component({ className: 'results-title', text: 'Results:' }),
+    new Component({ className: 'results-container', text: 'No data' })
+  );
 };
 
 export const createResults = (results: Array<ResultItem>) => {
   const container = new Component({
-    className: 'results-container',
+    className: 'results',
     text: results.length === 0 ? 'No data' : '',
   });
 
@@ -20,10 +24,10 @@ export const createResults = (results: Array<ResultItem>) => {
 };
 
 export const updateResults = (results: Array<ResultItem>) => {
-  const wrapper = document.querySelector('.results-wrapper');
-  if (!wrapper) {
-    throw new Error('Wrapper expected');
+  const container = document.querySelector('.results-container');
+  if (!container) {
+    throw new Error('Container expected');
   }
-  wrapper.innerHTML = '';
-  wrapper.appendChild(createResults(results).getNode());
+  container.innerHTML = '';
+  container.appendChild(createResults(results).getNode());
 };
