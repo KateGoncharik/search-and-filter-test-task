@@ -1,22 +1,43 @@
+import { ResultItem } from '../types';
+
 const API_URL = 'https://vpic.nhtsa.dot.gov/api/vehicles/';
 
-export async function getParts(filter: string, page?: number) {
+const buildQuery = (type?: string, page: number = 1) => {
+  const params: Array<string> = [];
+  if (type) {
+    params.push(`type=${type}`);
+  }
+  params.push(`page=${page}`);
+  if (params.length === 0) {
+    return '';
+  }
+  return `${params.join('&')}&`;
+};
+
+export async function getParts(
+  type?: string,
+  page?: number
+): Promise<Array<ResultItem> | null> {
   try {
     const response = await fetch(
-      `${API_URL}GetParts?${filter && `type=${filter}&`}format=json&page=${
-        page ?? 1
-      }`
+      `${API_URL}GetParts?${buildQuery(type, page)}format=json`
     );
 
     if (!response.ok) {
       throw new Error(`${response.status}`);
     }
 
-    return await response.json();
+    const res = await response.json();
+    return res.Results;
   } catch (error) {
     console.error('Error while fetching parts:', error);
     return null;
   }
+}
+
+export async function getPartsByName(name: string) {
+  const allParts = await getParts();
+  return allParts ? allParts.filter((part) => part.Name === name) : [];
 }
 
 export async function getManufacturerDetails(manufacturerId: number) {
@@ -28,8 +49,9 @@ export async function getManufacturerDetails(manufacturerId: number) {
     if (!response.ok) {
       throw new Error(`${response.status}`);
     }
-
-    return await response.json();
+    const res = await response.json();
+    // Because : If supplied parameter is a number - method will do exact match on Manufacturer's Id and return exactly one record.
+    return res.Results[0];
   } catch (error) {
     console.error('Error while fetching manufacturer details:', error);
     return null;
