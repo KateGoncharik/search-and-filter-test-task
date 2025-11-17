@@ -5,10 +5,17 @@ html {
 
 :root {
   --text: black;
-  --bg: #ffe0a68c;
+  --text-secondary: green;
+  --bg: #ffefd18c;
+  --item-border: yellow;
   --popup-bg: white;
   --popup-overlay: rgba(0, 0, 0, 0.6);
   --popup-title-border: #e0e0e0;
+  --shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+a {
+  color: var(--text-secondary);
 }
 
 body {
@@ -37,15 +44,34 @@ body {
 
 .header-title,
 .footer-title {
+  padding: 1%;
   font-size: 1.2rem;
 }
 
+.results-container {
+  padding: 1% 2%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.results-title {
+  margin: 0;
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
 .result-item {
+  max-width: 400px;
   padding: 12px 15px;
   border-bottom: 1px solid #eee;
+  border-left: 3px solid var(--item-border);
+  border-radius: 10px;
   color: #333;
   font-size: 16px;
   cursor: pointer;
+  background-color: var(--popup-bg);
+  box-shadow: var(--shadow);
 }
 .result-item:hover {
   cursor: pointer;
@@ -76,7 +102,7 @@ body {
 .popup-container {
   background: var(--popup-bg);
   border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow);
   padding: 20px 30px;
   max-width: 90%;
   width: 450px;
@@ -88,21 +114,22 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--popup-title-border);
 }
 
 .popup-title {
   margin: 0;
   font-size: 1.4em;
+  font-weight: 600;
 }
 
 .popup-close {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 28px;
+  font-size: 30px;
   padding: 0 5px;
 }
 
@@ -111,6 +138,27 @@ body {
 }
 
 .popup-body {
-  padding-top: 10px;
+  padding-top: 5px;
   font-size: 1em;
+  color: var(--text-secondary);
+}
+
+.popup-content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 12px 15px;
+  align-items: baseline;
+}
+
+.popup-details-title {
+  font-weight: 500;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.popup-details {
+  font-weight: 400;
+  color: var(--text-color-secondary);
+  word-break: break-word;
+  line-height: 1.4;
 }
