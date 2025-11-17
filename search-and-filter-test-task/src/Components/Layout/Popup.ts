@@ -72,32 +72,51 @@ export const updatePopupContent = async (manufacturerId: number) => {
   }
   const details = await getManufacturerDetails(manufacturerId);
   popupContent.innerHTML = '';
-  popupContent.appendChild(createDetails(details.Results[0]).getNode());
+  popupContent.appendChild(createDetails(details).getNode());
 };
 
 export const createDetails = (details: any) => {
-  const Address = new Component({
-    className: 'TODO',
-    text: details.Address,
-  });
-  const Country = new Component({
-    className: 'TODO',
-    text: details.Country,
-  });
-  const Contact = new Component({
-    className: 'TODO',
-    text: details.ContactEmail,
-  });
-  const contentWrapper = new Component({}, Address, Country, Contact);
+  const addressTitle = createPopupDetailsTitle('Address');
+  const address = createPopupDetailsBlock(details.Address, 'No address');
+  const countryTitle = createPopupDetailsTitle('Country');
+  const country = createPopupDetailsBlock(details.Country, 'No country');
+  const contactsTitle = createPopupDetailsTitle('Contacts');
+  const contact = createPopupDetailsBlock(details.ContactEmail, 'No email');
+  const typeTitle = createPopupDetailsTitle('Type');
 
-  details.ManufacturerTypes.forEach((type: { Name: string }) => {
-    const Type = new Component({
-      className: 'TODO',
-      text: type.Name,
+  const contentWrapper = new Component(
+    { className: 'popup-content-wrapper' },
+    addressTitle,
+    address,
+    countryTitle,
+    country,
+    contactsTitle,
+    contact,
+    typeTitle
+  );
+
+  if (details.ManufacturerTypes.length === 0) {
+    contentWrapper.append(createPopupDetailsBlock(null, 'No type'));
+  } else {
+    details.ManufacturerTypes.forEach((t: { Name: string }) => {
+      const type = createPopupDetailsBlock(t.Name, '');
+      contentWrapper.append(type);
     });
-    contentWrapper.append(Type);
-  });
+  }
 
-  console.log('details', details);
   return contentWrapper;
+};
+
+const createPopupDetailsTitle = (text: string) => {
+  return new Component({
+    className: 'popup-details-title',
+    text,
+  });
+};
+
+const createPopupDetailsBlock = (text: string | null, placeholder: string) => {
+  return new Component({
+    className: 'popup-details',
+    text: text ?? placeholder,
+  });
 };
