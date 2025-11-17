@@ -13,17 +13,14 @@ export default function createPopup(
   contentComponent: Component
 ): Component {
   const popupRoot = new Component({
-    tag: 'div',
     className: `popup hidden`,
   });
 
   const contentContainer = new Component({
-    tag: 'div',
     className: `popup-container`,
   });
 
   const header = new Component({
-    tag: 'div',
     className: `popup-header`,
   });
   const titleComponent = new Component({
@@ -46,10 +43,7 @@ export default function createPopup(
 
   header.appendChildren([titleComponent, closeButton]);
 
-  const body = new Component(
-    { tag: 'div', className: `popup-body` },
-    contentComponent
-  );
+  const body = new Component({ className: `popup-body` }, contentComponent);
 
   contentContainer.appendChildren([header, body]);
   popupRoot.append(contentContainer);
