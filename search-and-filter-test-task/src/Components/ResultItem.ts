@@ -6,9 +6,13 @@ export default function createResultItem(itemData: ResultItem): Component {
   const itemBlock = new Component({
     className: 'result-item',
   });
-  const name = new Component({
+  const partName = new Component({
+    className: 'result-item-detail bold',
+    text: itemData.Name,
+  });
+  const manName = new Component({
     className: 'result-item-detail',
-    text: itemData.ManufacturerName,
+    text: 'Produced by: ' + itemData.ManufacturerName,
   });
   const link = new Component({
     tag: 'a',
@@ -18,7 +22,7 @@ export default function createResultItem(itemData: ResultItem): Component {
   link.setAttribute('href', itemData.URL);
   link.addListener('click', (e) => e.stopPropagation());
 
-  itemBlock.appendChildren([name, link]);
+  itemBlock.appendChildren([partName, manName, link]);
   itemBlock.setAttribute(
     'data-manufacturer-id',
     itemData.ManufacturerId.toString()

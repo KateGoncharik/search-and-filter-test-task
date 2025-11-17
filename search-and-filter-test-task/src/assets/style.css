@@ -15,6 +15,10 @@ html {
   --shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+.bold {
+  font-weight: 600;
+}
+
 a {
   color: var(--text-secondary);
 }
