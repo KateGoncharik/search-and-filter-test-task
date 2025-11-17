@@ -3,11 +3,19 @@ import { updateSearchByFilter, updateSearchByName } from '../helpers';
 
 const PART_TYPE_CODES = [565, 566];
 
-export default function createTypeFilter(): Component {
+export const createFilters = (): Component => {
+  return new Component(
+    { className: 'filters-wrapper' },
+    createTypeFilter(),
+    createNameFilter()
+  );
+};
+
+const createTypeFilter = (): Component => {
   const label = new Component({
     className: 'select-label',
     tag: 'label',
-    text: 'Part type',
+    text: 'Type',
   });
   label.setAttribute('for', 'filter');
 
@@ -32,9 +40,9 @@ export default function createTypeFilter(): Component {
     }
   });
   return label;
-}
+};
 
-export const createNameFilter = (): Component => {
+const createNameFilter = (): Component => {
   const label = new Component({
     className: 'name-input-label',
     tag: 'label',

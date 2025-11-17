@@ -9,7 +9,9 @@ export const createResultsWrapper = () => {
 export const createResults = (results: Array<ResultItem>) => {
   const container = new Component({
     className: 'results-container',
+    text: results.length === 0 ? 'No data' : '',
   });
+
   results.forEach((result: ResultItem) => {
     const item = createResultItem(result);
     container.append(item);
