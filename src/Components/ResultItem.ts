@@ -17,7 +17,7 @@ export default function createResultItem(itemData: ResultItem): Component {
   const link = new Component({
     tag: 'a',
     className: 'result-item-detail',
-    text: 'Details from resourse',
+    text: 'Check details in the sourse',
   });
   link.setAttribute('href', itemData.URL);
   link.addListener('click', (e) => e.stopPropagation());

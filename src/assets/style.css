@@ -247,6 +247,16 @@ a:hover {
   line-height: 1.5;
 }
 
+.github,
+.linkedin {
+  width: 40px;
+  margin: 0 1%;
+}
+
+.repo-link {
+  display: block;
+}
+
 @media (min-width: 800px) {
   .api-description {
     max-width: 55%;
