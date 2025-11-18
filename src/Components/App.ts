@@ -1,10 +1,10 @@
 import Component from '../component';
-import createFooter from './Layout/Footer';
-import createHeader from './Layout/Header';
-import createMainWrapper from './Layout/MainWrapper';
-import createPopup from './Layout/Popup';
+import { createFooter } from './Layout/Footer';
+import { createHeader } from './Layout/Header';
+import { createMainWrapper } from './Layout/MainWrapper';
+import { createPopup } from './Layout/Popup';
 
-export default function createApp(): Component {
+export const createApp = (): Component => {
   createPopup(
     'Details',
     new Component({ className: 'popup-content', text: 'Loading...' })
@@ -16,4 +16,4 @@ export default function createApp(): Component {
     createMainWrapper(),
     createFooter()
   );
-}
+};

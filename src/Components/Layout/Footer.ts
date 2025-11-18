@@ -2,7 +2,7 @@ import Component from '../../component';
 import githubIcon from '../../assets/img/github-mark.png';
 import linkedin from '../../assets/img/linkedin.png';
 
-export default function createFooter(): Component {
+export const createFooter = (): Component => {
   const title = new Component({
     className: 'footer-title',
     text: 'Created with HTML, CSS, TypeScript, Vite and passion',
@@ -58,4 +58,4 @@ export default function createFooter(): Component {
     linkedinLink,
     year
   );
-}
+};

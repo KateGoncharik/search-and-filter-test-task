@@ -1,6 +1,6 @@
 import Component from '../component';
 import { ResultItem } from '../types';
-import createResultItem from './ResultItem';
+import { createResultItem } from './ResultItem';
 import { LIMIT_PER_PAGE } from './state';
 
 export const createResultsWrapper = () => {

@@ -21,7 +21,7 @@ const createApiDescription = () => {
   );
 };
 
-export default function createMainWrapper(): Component {
+export const createMainWrapper = (): Component => {
   updateSearchByFilter('');
   return new Component(
     { tag: 'main', className: 'main-wrapper' },
@@ -29,4 +29,4 @@ export default function createMainWrapper(): Component {
     createFilters(),
     createResultsWrapper()
   );
-}
+};

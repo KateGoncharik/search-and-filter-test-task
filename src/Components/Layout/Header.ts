@@ -1,6 +1,6 @@
 import Component from '../../component';
 
-export default function createHeader(): Component {
+export const createHeader = (): Component => {
   const authorLink = new Component({
     tag: 'a',
     className: 'author',
@@ -22,4 +22,4 @@ export default function createHeader(): Component {
     { tag: 'header', className: 'main-header' },
     headerTitle
   );
-}
+};

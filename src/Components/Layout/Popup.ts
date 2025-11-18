@@ -8,10 +8,10 @@ export const showPopup = () => {
   }
 };
 
-export default function createPopup(
+export const createPopup = (
   title: string,
   contentComponent: Component
-): Component {
+): Component => {
   const popupRoot = new Component({
     className: `popup hidden`,
   });
@@ -50,7 +50,7 @@ export default function createPopup(
 
   document.body.append(popupRoot.getNode());
   return popupRoot;
-}
+};
 
 export const updatePopupContent = async (manufacturerId: number) => {
   const popupContent = document.querySelector('.popup-content');

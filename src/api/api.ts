@@ -15,10 +15,10 @@ const buildQuery = (type?: string, page: number = DEFAULT_PAGINATION_PAGE) => {
   return `${params.join('&')}&`;
 };
 
-export async function getParts(
+export const getParts = async (
   type?: string,
   page?: number
-): Promise<{ results: Array<ResultItem>; total: number } | null> {
+): Promise<{ results: Array<ResultItem>; total: number } | null> => {
   try {
     const response = await fetch(
       `${API_URL}GetParts?${buildQuery(type, page)}format=json`
@@ -34,14 +34,14 @@ export async function getParts(
     console.error('Error while fetching parts:', error);
     return null;
   }
-}
+};
 
-export async function getPartsByName(name: string) {
+export const getPartsByName = async (name: string) => {
   const allParts = await getParts();
   return allParts ? allParts.results.filter((part) => part.Name === name) : [];
-}
+};
 
-export async function getManufacturerDetails(manufacturerId: number) {
+export const getManufacturerDetails = async (manufacturerId: number) => {
   try {
     const response = await fetch(
       `${API_URL}getmanufacturerdetails/${manufacturerId}?format=json`
@@ -57,4 +57,4 @@ export async function getManufacturerDetails(manufacturerId: number) {
     console.error('Error while fetching manufacturer details:', error);
     return null;
   }
-}
+};

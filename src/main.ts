@@ -1,4 +1,4 @@
-import createApp from './Components/App';
+import { createApp } from './Components/App';
 import { paginateAndRender } from './Components/Pagination';
 import { appState } from './Components/state';
 import './assets/style.css';

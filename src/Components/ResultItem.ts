@@ -2,7 +2,7 @@ import Component from '../component';
 import { ResultItem } from '../types';
 import { showPopup, updatePopupContent } from './Layout/Popup';
 
-export default function createResultItem(itemData: ResultItem): Component {
+export const createResultItem = (itemData: ResultItem): Component => {
   const itemBlock = new Component({
     className: 'result-item',
   });
@@ -34,4 +34,4 @@ export default function createResultItem(itemData: ResultItem): Component {
     }
   }
   return itemBlock;
-}
+};
