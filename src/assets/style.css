@@ -55,9 +55,8 @@ body {
 }
 
 .api-description {
-  margin: 0 auto;
-
-  font-size: 1.2rem;
+  margin: 0 2%;
+  font-size: 1.1rem;
   max-width: 85%;
 }
 
@@ -151,6 +150,21 @@ body {
   transform: translateX(3px);
 }
 
+.pagination-controls {
+  margin: 2%;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.pagination-button {
+  padding: 10px 12px;
+  background-color: var(--popup-bg);
+  border: 1px solid var(--light-gray);
+}
+
 .popup {
   position: fixed;
   top: 0;
@@ -198,7 +212,8 @@ body {
   font-weight: 600;
 }
 
-.popup-close:hover {
+.popup-close:hover,
+.pagination-button:hover {
   cursor: pointer;
 }
 
@@ -231,10 +246,9 @@ body {
 @media (min-width: 800px) {
   .api-description {
     max-width: 55%;
-    font-size: 1.1rem;
   }
   .results {
-    max-width: 800px;
+    max-width: 90%;
   }
   .result-item {
     padding: 25px 18px;

@@ -16,7 +16,7 @@ export const createResults = (res: {
 }) => {
   const count = new Component({
     className: '',
-    text: '' + res.total,
+    text: `Displayed 10 per page from total: ${res.total}`,
   });
 
   const container = new Component(
