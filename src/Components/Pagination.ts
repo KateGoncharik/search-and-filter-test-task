@@ -1,8 +1,8 @@
 import { AppState, appState, LIMIT_PER_PAGE, updatePage } from './state';
 import Component from '../component';
 import { updateResults } from './Results';
+import { updatePaginationControllersState } from '../helpers';
 
-// TODO handle disabled buttons - and sync their status with state update
 export const createPaginationControls = (
   state: AppState,
   onPageChange: (newPage: number) => void
@@ -49,6 +49,7 @@ export const createPaginationControls = (
 export const changePage = (newPage: number) => {
   updatePage(newPage);
   paginateAndRender(appState);
+  updatePaginationControllersState();
 };
 
 export const paginateAndRender = (state: AppState) => {
