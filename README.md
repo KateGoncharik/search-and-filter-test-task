@@ -107,18 +107,21 @@ Please, follow these steps to run project.
 
 1. Clone the repo
 
-   sh
+   ```sh
    git clone <https://github.com/KateGoncharik/search-and-filter-test-task.git>
+   ```
 
 2. Install NPM packages
 
-   sh
+   ```sh
    npm install
+   ```
 
 3. Start project
 
-   sh
+   ```sh
    npm run dev
+   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
