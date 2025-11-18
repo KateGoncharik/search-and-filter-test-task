@@ -1,5 +1,5 @@
 import Component from '../component';
-import { updateSearchByFilter, updateSearchByName } from '../helpers';
+import { debounce, updateSearchByFilter, updateSearchByName } from '../helpers';
 
 const PART_TYPE_CODES = [565, 566];
 
@@ -66,11 +66,14 @@ const createNameFilter = (): Component => {
   wrapper.appendChildren([input, clearButton]);
   label.append(wrapper);
 
-  // TODO add debounce
   input.addListener('input', (e) => {
     const target = e.target;
     if (target instanceof HTMLInputElement) {
-      updateSearchByName(target.value);
+      const debouncedHandler = debounce(
+        () => updateSearchByName(target.value),
+        1000
+      );
+      debouncedHandler();
     }
   });
 
