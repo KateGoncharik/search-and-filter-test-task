@@ -1,6 +1,7 @@
 import Component from '../component';
 import { ResultItem } from '../types';
 import createResultItem from './ResultItem';
+import { LIMIT_PER_PAGE } from './state';
 
 export const createResultsWrapper = () => {
   return new Component(
@@ -16,7 +17,7 @@ export const createResults = (res: {
 }) => {
   const count = new Component({
     className: '',
-    text: `Displayed 10 per page from total: ${res.total}`,
+    text: `Displayed ${LIMIT_PER_PAGE} per page from total: ${res.total}`,
   });
 
   const container = new Component(

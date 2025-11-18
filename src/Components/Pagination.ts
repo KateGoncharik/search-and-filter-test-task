@@ -54,7 +54,7 @@ export const changePage = (newPage: number) => {
 export const paginateAndRender = (state: AppState) => {
   const startIndex = (state.currentPage - 1) * LIMIT_PER_PAGE;
   const endIndex = startIndex + LIMIT_PER_PAGE;
-  const displayedResults = state.allData.slice(startIndex, endIndex);
+  const displayedResults = state.searchResults.slice(startIndex, endIndex);
 
   const dataToUpdate = {
     results: displayedResults,

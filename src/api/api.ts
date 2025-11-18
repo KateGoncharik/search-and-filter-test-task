@@ -1,8 +1,9 @@
+import { DEFAULT_PAGINATION_PAGE } from '../Components/state';
 import { ResultItem } from '../types';
 
 const API_URL = 'https://vpic.nhtsa.dot.gov/api/vehicles/';
 
-const buildQuery = (type?: string, page: number = 1) => {
+const buildQuery = (type?: string, page: number = DEFAULT_PAGINATION_PAGE) => {
   const params: Array<string> = [];
   if (type) {
     params.push(`type=${type}`);

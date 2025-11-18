@@ -1,17 +1,18 @@
 import { ResultItem } from '../types';
 
 export const LIMIT_PER_PAGE = 10;
+export const DEFAULT_PAGINATION_PAGE = 1;
 
 export interface AppState {
-  allData: Array<ResultItem>;
+  searchResults: Array<ResultItem>;
   totalItems: number;
   currentPage: number;
 }
 
 export let appState: AppState = {
-  allData: [],
+  searchResults: [],
   totalItems: 0,
-  currentPage: 1,
+  currentPage: DEFAULT_PAGINATION_PAGE,
 };
 
 export const updatePage = (page: number) => {
@@ -21,9 +22,9 @@ export const updatePage = (page: number) => {
   });
 };
 
-export const updateData = (newData: Array<ResultItem>) => {
+export const updateSearchResults = (newData: Array<ResultItem>) => {
   return new Promise((resolve) => {
-    appState = { ...appState, allData: newData };
+    appState = { ...appState, searchResults: newData };
     resolve('');
   });
 };

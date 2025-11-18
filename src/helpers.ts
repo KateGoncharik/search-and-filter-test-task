@@ -1,16 +1,20 @@
 import { getParts, getPartsByName } from './api/api';
 import { paginateAndRender } from './Components/Pagination';
-import { appState, updateData, updateTotal } from './Components/state';
+import {
+  appState,
+  DEFAULT_PAGINATION_PAGE,
+  updateSearchResults,
+  updateTotal,
+} from './Components/state';
 
 export const updateSearchByFilter = (filter?: string) => {
   getParts(filter).then((res) => {
     if (res) {
-      updateData(res.results).then(() => {
+      updateSearchResults(res.results).then(() => {
         updateTotal(res.total).then(() => {
           paginateAndRender({
-            allData: appState.allData,
-            totalItems: appState.totalItems,
-            currentPage: 1,
+            ...appState,
+            currentPage: DEFAULT_PAGINATION_PAGE,
           });
         });
       });
@@ -21,12 +25,12 @@ export const updateSearchByFilter = (filter?: string) => {
 export const updateSearchByName = (name: string) => {
   getPartsByName(name).then((res) => {
     if (res) {
-      updateData(res).then(() => {
+      // TODO refactoring and upd buttons
+      updateSearchResults(res).then(() => {
         updateTotal(1).then(() => {
           paginateAndRender({
-            allData: appState.allData,
-            totalItems: appState.totalItems,
-            currentPage: 1,
+            ...appState,
+            currentPage: DEFAULT_PAGINATION_PAGE,
           });
         });
       });
